@@ -241,11 +241,11 @@ class emitirnfecontroller extends CI_Controller {
     
     public function carregarFilial() {
         
-        $empresa = $this->input->POST('empresa');
+        $idEmpresa = $this->input->POST('idEmpresa');
 
         $this->load->model('emitirnfemodel');
 
-        $retorno = $this->emitirnfemodel->carregarFilial($empresa);
+        $retorno = $this->emitirnfemodel->carregarFilial($idEmpresa);
 
         echo json_encode($retorno);
     }

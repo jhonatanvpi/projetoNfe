@@ -1000,36 +1000,40 @@ class emitirnfemodel extends CI_Model {
     private function getDadosEmpresa(){
         
         $this->initConBanco();
-        $query = "SELECT ID_EMPRESA, NOME_FANTASIA FROM GP_SYS_EMPRESA  WHERE ATIVO = 'S' ORDER BY NOME_FANTASIA";
+        $query = "SELECT ID_EMPRESA, NOME_FANTASIA FROM SYS_EMPRESA  WHERE ATIVO = 'S' ORDER BY NOME_FANTASIA";
+        //print_r($query);exit();
         $rs = $this->conBanco->query($query)->result();
         return $rs;
         
     }
     
     
-    public function carregarEmpresa(){
+    private function carregarHtml($data){
         
         $html = "<option value='0'>Selecione</option>";
         
-        $data = $this->getDadosEmpresa();
-        $return = '';
-        if (is_array($rs) && count($rs) > 0) {
+        if (is_array($data) && count($data) > 0) {
 
             foreach ($data as $Empresa) {
 
                 $idEmpresa = $Empresa->ID_EMPRESA;
                 $nome      = $Empresa->NOME_FANTASIA;
-                $html .= "<option value='$idEmpresa'>$nome</option>";
+                $html     .= "<option value='$idEmpresa'>$nome</option>";
             }
-
-            $return = $html;
-            
         } 
         else {
-            $return = "<option value='0'>Nenhuma Empresa Cadastrado</option>";
+            $html = "<option value='0'>Nenhuma Empresa Cadastrado</option>";
         }
+        return $html;
+    }
+    
+    
+    public function carregarEmpresa(){
         
-        return $return;
+        $data = $this->getDadosEmpresa();
+        $html = $this->carregarHtml($data);
+        
+        return $html;
         
     }
     
