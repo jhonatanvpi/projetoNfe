@@ -1,6 +1,6 @@
-emitirNFE
+# emitirNFE
 
-###INSTALANDO O nfephp
+### INSTALANDO O nfephp
 
 Primeiramente instale o composer pelo site https://getcomposer.org/. 
 
@@ -31,9 +31,9 @@ http://localhost/vpigestao/fwk/nfe/vendor/nfephp-org/nfephp/install/
 ![All text](https://github.com/jhonatanvpi/projetoNfe/blob/master/images/4.PNG)
 
 
-##Após a configuração do arquivo .json
+## Após a configuração do arquivo .json
 
-###1 - Criar XML 
+### 1 - Criar XML 
 
 Use o arquivo para criar sua XML
 
@@ -45,7 +45,7 @@ $filename = "C:\\server\\htdocs\\vpigestao\\fwk\\uploadNFE\\homologacao\\entrada
 Altere os dados como cUF = "52" por cUF = "42" assim por diante. Arrumar dados do emitente e destinatário
 
 
-###2 - Assinar XML 
+### 2 - Assinar XML 
 Vamos usar o código
 
 http://localhost/vpigestao/fwk/nfe/vendor/nfephp-org/nfephp/exemplos/NFe/4.00testaAssinaNFe.php
@@ -64,7 +64,7 @@ $filename = "C:\\server\\htdocs\\vpigestao\\fwk\\uploadNFE\\homologacao\\assinad
 
 
 
-###3 - Validar XML 
+### 3 - Validar XML 
 Agora precisamos validar o XML, vamos usar o código 
 http://localhost/vpigestao/fwk/nfe/vendor/nfephp-org/nfephp/exemplos/NFe/4.00
 
