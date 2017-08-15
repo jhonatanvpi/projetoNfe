@@ -107,7 +107,8 @@ Achei um possível erro, voltando para a criação da NFE
 
 
 
-Validar XML  
+### Validar XML Depois de ter arrumado as configs
+
 Novo erro arrumando as configurações do XML na parte de criação do XML 
 Elemento 'CEST': [Erro 'Layout'] O valor '2345' nÃ£o Ã© aceito para o padrÃ£o. '[0-9]{7}'. Elemento 'CEST': '2345' nÃ£o Ã© um valor vÃ¡lido. Elemento 'CEST': [Erro 'Layout'] O valor '9999' nÃ£o Ã© aceito para o padrÃ£o. '[0-9]{7}'. Elemento 'CEST': '9999' nÃ£o Ã© um valor vÃ¡lido. 
 
@@ -115,19 +116,19 @@ A fins de teste comentei a variável
 //$nfe->tagCEST(1, ...);
 
 
-4 - Enviar Lote NFE para Sefaz 
+### 4 - Enviar Lote NFE para Sefaz 
 Link: https://github.com/nfephp-org/nfephp/blob/master/libs/NFe/ToolsNFe.php
 
 
-5 - Buscar o resultado da análise 
+### 5 - Buscar o resultado da análise 
 Link: https://github.com/nfephp-org/nfephp/blob/master/libs/NFe/ToolsNFe.php
 
 
-6 - Caso aprovado adicionar protocolo de autorização 
+### 6 - Caso aprovado adicionar protocolo de autorização 
 Link: https://github.com/nfephp-org/nfephp/blob/master/libs/NFe/ToolsNFe.php
 
 
-7 - Imprimir DANFE
+### 7 - Imprimir DANFE
 Link: https://github.com/nfephp-org/nfephp/blob/master/libs/Extras/Danfe.php
 
 
