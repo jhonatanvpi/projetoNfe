@@ -1,42 +1,41 @@
 # emitirNFE
 
-### INSTALANDO O nfephp
+## INSTALANDO O nfephp
 
-Primeiramente instale o composer pelo site https://getcomposer.org/. 
+Primeiramente instale o composer pelo site https://getcomposer.org/. Eu instalei o cmder que é um emulador de terminal um pouco mais conveniente de se trabalhar no windows. 
 
-Eu instalei o cmder que é um emulador de terminal um pouco mais conveniente de se trabalhar no windows. 
-
-Pelo cmder use composer :
-
-composer require nfephp-org/nfephp na pasta onde deseja instalar.
+Pelo cmder use composer 
 
 ![All text](https://github.com/jhonatanvpi/projetoNfe/blob/master/images/1.PNG)
 
-Agora na pasta vendor você terá o pacote instalado. 
-
-Vá na pasta do nfe e use "composer update"
+Vá na pasta do nfe conforme o caminho na imagem e use "composer update"
 
 ![All text](https://github.com/jhonatanvpi/projetoNfe/blob/master/images/2.PNG)
+
+Agora você pode acessar no servidor a pasta install do nfephp
+Em meu caso : 
+http://localhost/vpigestao/fwk/nfe/vendor/nfephp-org/nfephp/install/
 
 Crie as pastas 
 
 C:\server\htdocs\vpigestao\fwk\uploadNFE\homologacao\entradas
+C:\server\htdocs\vpigestao\fwk\uploadNFE\homologacao\assinadas
+
 C:\server\htdocs\vpigestao\fwk\uploadCTE\homologacao\entradas
 
-Agora você pode acessar no servidor a pasta install do nfephp
-Em meu caso : 
-
-http://localhost/vpigestao/fwk/nfe/vendor/nfephp-org/nfephp/install/
-
 ![All text](https://github.com/jhonatanvpi/projetoNfe/blob/master/images/3.PNG)
+
 ![All text](https://github.com/jhonatanvpi/projetoNfe/blob/master/images/4.PNG)
 
 
 ## Após a configuração do arquivo .json
 
 ### 1 - Criar XML 
+#### Atenção!!! Essa é a parte mais importante do processo, preste atenção ao preencher todos os dados, caso algum dado não esteja correto, o lote não será enviado, caso os dados que tiverem no programa não estiverem na nota fiscal apague a informação e deixe a variável limpa, e.g teste=""
 
-Use o arquivo para criar sua XML
+#### Agora começando 
+
+Use esse arquivo para criar sua XML
 
 http://localhost/vpigestao/fwk/nfe/vendor/nfephp-org/nfephp/exemplos/NFe/4.00testaMakeNFe.php
 
@@ -45,9 +44,9 @@ Arrume o caminho para a pasta onde será salvo , essa variável se encontra no f
 $filename = "C:\\server\\htdocs\\vpigestao\\fwk\\uploadNFE\\homologacao\\entradas\\nfe.xml";
 Altere os dados como cUF = "52" por cUF = "42" assim por diante. Arrumar dados do emitente e destinatário
 
-
 ### 2 - Assinar XML 
-Vamos usar o código
+
+Vamos usar o código, certifique-se de alterar os valores da chave, que você pode ver na nota fiscal gerada e o caminho para a NFE de entrada
 
 http://localhost/vpigestao/fwk/nfe/vendor/nfephp-org/nfephp/exemplos/NFe/4.00testaAssinaNFe.php
 
@@ -63,11 +62,13 @@ Depois temos outra variável que vai ter o XML assinado, também deve ser trocad
 $filename = "C:\\server\\htdocs\\vpigestao\\fwk\\uploadNFE\\homologacao\\assinadas\\{$chave}-nfe.xml";
 
 
-
-
 ### 3 - Validar XML 
+
 Agora precisamos validar o XML, vamos usar o código 
+
 http://localhost/vpigestao/fwk/nfe/vendor/nfephp-org/nfephp/exemplos/NFe/4.00
+
+Erro : Undefined $nfeTools, substitua por $nfe
 
 Erro atual : 
 
@@ -95,43 +96,48 @@ use NFePHP\Common\Base\BaseTools;
 $tools = new BaseTools('../../config/config.json');
 $tools->setSSLProtocol('TLSv1.0');
 
-
-
-Achei um erro ==> Em alguma parte do nfephp a UF está setada como GO, então uma solução temporária é forçar o uso de "SC"
-Se você está usando o NetBeans, aperta ctr+botão-mouse na função "verificaValidade", depois em "sefazConsultaChave" e então na parte do código 
-$cUF = substr($chNFe, 0, 2);
-$cUF = "42";
-
-Achei um possível erro, voltando para a criação da NFE
-
-
-
-
-### Validar XML Depois de ter arrumado as configs
-
 Novo erro arrumando as configurações do XML na parte de criação do XML 
 Elemento 'CEST': [Erro 'Layout'] O valor '2345' nÃ£o Ã© aceito para o padrÃ£o. '[0-9]{7}'. Elemento 'CEST': '2345' nÃ£o Ã© um valor vÃ¡lido. Elemento 'CEST': [Erro 'Layout'] O valor '9999' nÃ£o Ã© aceito para o padrÃ£o. '[0-9]{7}'. Elemento 'CEST': '9999' nÃ£o Ã© um valor vÃ¡lido. 
 
 A fins de teste comentei a variável 
 //$nfe->tagCEST(1, ...);
 
+Se tudo der certo você deve ver NFE Válida
 
-### 4 - Enviar Lote NFE para Sefaz 
-Link: https://github.com/nfephp-org/nfephp/blob/master/libs/NFe/ToolsNFe.php
+Apenas para podermos ter certeza que o xml é válido de acordo com as regras do negócio vá em https://www.sefaz.rs.gov.br/nfe/nfe-val.aspx
 
+abra a xml ASSINADA e coloque no campo e aperte validar, se tudo estiver correto você deverá ter algo mais ou menos nesse padrão 
 
-### 5 - Buscar o resultado da análise 
-Link: https://github.com/nfephp-org/nfephp/blob/master/libs/NFe/ToolsNFe.php
-
-
-### 6 - Caso aprovado adicionar protocolo de autorização 
-Link: https://github.com/nfephp-org/nfephp/blob/master/libs/NFe/ToolsNFe.php
+![All text](https://github.com/jhonatanvpi/projetoNfe/blob/master/images/5.PNG)
 
 
-### 7 - Imprimir DANFE
-Link: https://github.com/nfephp-org/nfephp/blob/master/libs/Extras/Danfe.php
+4 - Enviar Lote NFE para Sefaz 
+Agora que o xml foi validado devemos enviar o lote para a sefaz com o código,  certifique-se de alterar os valores da chave, que você pode ver na nota fiscal assinada e o caminho para a NFE de assinada em file_get_contentshttp://127.0.0.1/vpigestao/fwk/nfe/vendor/nfephp-org/nfephp/exemplos/NFe/4.00testaEnviaLote.php
 
+
+se tudo der certo você deve ver essa imagem, caso não e der erro de schema volte a sua criação da NFE, algo deve estar errado!! 
+
+
+![All text](https://github.com/jhonatanvpi/projetoNfe/blob/master/images/6.PNG)
+
+
+5 - Buscar o resultado da análise 
+Pelo exemplo anterior foi recebido direto o número do protocolo
+
+6 - Caso aprovado adicionar protocolo de autorização 
+Agora podemos usar http://localhost/vpigestao/fwk/nfe2/vendor/nfephp-org/nfephp/exemplos/NFe/4.00testaAddProt.php
+
+O Número do recebi estará na pasta C:\server\htdocs\vpigestao\fwk\uploadNFE\homologacao\temporarias\201708
+
+Se tudo der certo agora teremos um novo caminho 
+
+C:\server\htdocs\vpigestao\fwk\uploadNFE\homologacao\enviadas\aprovadas\201708
+
+com uma nova NFE com final protNFe.xml
+
+7 - Imprimir DANFE
+Agora modificamos os caminhos do código http://localhost/vpigestao/fwk/nfe2/vendor/nfephp-org/nfephp/exemplos/NFe/4.00testaDanfe.php
+E assim teremos a DANFE gerada
 
 Link do Projeto no github - criptografado
 Link: https://github.com/jhonatanvpi/projetoNfe
-
