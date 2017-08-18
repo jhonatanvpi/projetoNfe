@@ -111,7 +111,7 @@ abra a xml ASSINADA e coloque no campo e aperte validar, se tudo estiver correto
 ![All text](https://github.com/jhonatanvpi/projetoNfe/blob/master/images/5.PNG)
 
 
-4 - Enviar Lote NFE para Sefaz 
+### 4 - Enviar Lote NFE para Sefaz 
 Agora que o xml foi validado devemos enviar o lote para a sefaz com o código,  certifique-se de alterar os valores da chave, que você pode ver na nota fiscal assinada e o caminho para a NFE de assinada em file_get_contentshttp://127.0.0.1/vpigestao/fwk/nfe/vendor/nfephp-org/nfephp/exemplos/NFe/4.00testaEnviaLote.php
 
 
@@ -121,10 +121,10 @@ se tudo der certo você deve ver essa imagem, caso não e der erro de schema vol
 ![All text](https://github.com/jhonatanvpi/projetoNfe/blob/master/images/6.PNG)
 
 
-5 - Buscar o resultado da análise 
+### 5 - Buscar o resultado da análise 
 Pelo exemplo anterior foi recebido direto o número do protocolo
 
-6 - Caso aprovado adicionar protocolo de autorização 
+### 6 - Caso aprovado adicionar protocolo de autorização 
 Agora podemos usar http://localhost/vpigestao/fwk/nfe2/vendor/nfephp-org/nfephp/exemplos/NFe/4.00testaAddProt.php
 
 O Número do recebi estará na pasta C:\server\htdocs\vpigestao\fwk\uploadNFE\homologacao\temporarias\201708
@@ -135,9 +135,9 @@ C:\server\htdocs\vpigestao\fwk\uploadNFE\homologacao\enviadas\aprovadas\201708
 
 com uma nova NFE com final protNFe.xml
 
-7 - Imprimir DANFE
+### 7 - Imprimir DANFE
 Agora modificamos os caminhos do código http://localhost/vpigestao/fwk/nfe2/vendor/nfephp-org/nfephp/exemplos/NFe/4.00testaDanfe.php
 E assim teremos a DANFE gerada
 
-Link do Projeto no github - criptografado
+### Link do Projeto no github - criptografado
 Link: https://github.com/jhonatanvpi/projetoNfe
